@@ -16,15 +16,18 @@ Current library versions used:
 
 Add the following in your `componser.json`:
 
+```json
     {
         "require": {
             // ...
             "helthe/turbolinks-bundle": "dev-master"
         }
     }
+```
 
 ### Step 2: Register the bundle
 
+```php
     <?php
     // app/AppKernel.php
 
@@ -35,6 +38,7 @@ Add the following in your `componser.json`:
             new Helthe\Bundle\TurbolinksBundle(),
         );
     }
+```
 
 
 ## Usage
@@ -47,13 +51,17 @@ To enable turbolinks, all you need to do is add the turbolinks javascript to you
 
 #### Inserting the asset directly
 
+```twig
     <script src="{{ asset('bundles/heltheturbolinks/js/turbolinks.js') }}"></script>
+```
 
 #### Using Assetic
 
+```twig
     {% javascripts
       '@HeltheTurbolinksBundle/Resources/public/js/turbolinks.js'
     %}
+```
 
 ### Using jquery.turbolinks
 
