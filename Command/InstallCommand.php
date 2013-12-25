@@ -53,7 +53,7 @@ EOT
 
         $filesystem->mkdir($bundleDir, 0777);
 
-        $output->writeln('Installing turbolinks assets from <comment>"Helthe\Component\Turbolinks"</comment> into <comment>"%s"</comment>');
+        $output->writeln('Installing turbolinks assets from <comment>"Helthe\Component\Turbolinks"</comment> into <comment>"Helthe\Bundle\TurbolinksBundle"</comment>');
 
         $filesystem->mirror($componentDir, $bundleDir, Finder::create()->ignoreDotFiles(false)->in($componentDir));
     }
