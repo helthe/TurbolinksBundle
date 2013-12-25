@@ -43,6 +43,7 @@ public function registerBundles()
 
 ### Step 3: Add Composer scripts for automatic installation of assets
 
+```json
 {
    "scripts": {
        "post-install-cmd": [
@@ -53,6 +54,7 @@ public function registerBundles()
        ]
    }
 }
+```
 
 ## Usage
 
