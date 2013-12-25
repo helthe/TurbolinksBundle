@@ -1,18 +1,13 @@
 # HeltheTurbolinksBundle
 
-The HeltheTurbolinksBundle is a direct port of the rails [turbolinks](https://github.com/rails/turbolinks) gem
-and [jquery.turbolinks](https://github.com/kossnocorp/jquery.turbolinks) gem for your Symfony2 application.
-
-## Versions
-
-Current library versions used:
-
- * turbolinks: v2.1.0
- * jquery.turbolinks: v2.0.1
+The HeltheTurbolinksBundle integrates the [Helthe Turbolinks Component](https://github.com/helthe/Turbolinks)
+with your Symfony2 application.
 
 ## Installation
 
-### Step 1: Composer
+### Step 1: Add package requirement in Composer
+
+#### Manually
 
 Add the following in your `componser.json`:
 
@@ -20,12 +15,18 @@ Add the following in your `componser.json`:
 {
     "require": {
         // ...
-        "helthe/turbolinks-bundle": "dev-master"
+        "helthe/turbolinks-bundle": "~1.0"
     }
 }
 ```
 
-### Step 2: Register the bundle
+#### Using the command line
+
+```bash
+$ composer require 'helthe/turbolinks-bundle=~1.0'
+```
+
+### Step 2: Register the bundle in the kernel
 
 ```php
 <?php
@@ -40,16 +41,28 @@ public function registerBundles()
 }
 ```
 
+### Step 3: Add Composer scripts for automatic installation of assets
+
+{
+   "scripts": {
+       "post-install-cmd": [
+           "Helthe\\Bundle\\TurbolinksBundle\\Composer\\ScriptHandler::installAssets"
+       ],
+       "post-update-cmd": [
+           "Helthe\\Bundle\\TurbolinksBundle\\Composer\\ScriptHandler::installAssets"
+       ]
+   }
+}
 
 ## Usage
 
+To start using turbolinks, all you need to do is add the turbolinks javascript to your layout.
+
 Both the original coffeescript version and compiled version of each script are available for use.
 
-### Using turbolinks.js
+### Inserting the javascript in your layout
 
-To enable turbolinks, all you need to do is add the turbolinks javascript to your layout.
-
-#### Inserting the asset directly
+#### Directly
 
 ```jinja
 <script src="{{ asset('bundles/heltheturbolinks/js/turbolinks.js') }}"></script>
@@ -83,6 +96,9 @@ help with this, check out the [Turbolinks Compatibility project](http://reed.git
 Please refer to the [turbolinks](https://github.com/rails/turbolinks) and
 [jquery.turbolinks](https://github.com/kossnocorp/jquery.turbolinks) projects
 if you require additional information on the javascript libraries.
+
+You will find additional documentation with the turbolinks component
+[documentation](https://github.com/helthe/Turbolinks).
 
 ## Bugs
 

@@ -5,13 +5,13 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="helthe_turbolinks.listener.block_xdomain.class">Helthe\Bundle\TurbolinksBundle\EventListener\BlockXDomainListener</parameter>
-        <parameter key="helthe_turbolinks.listener.redirect.class">Helthe\Bundle\TurbolinksBundle\EventListener\RedirectListener</parameter>
-        <parameter key="helthe_turbolinks.listener.request_method.class">Helthe\Bundle\TurbolinksBundle\EventListener\RequestMethodListener</parameter>
+        <parameter key="helthe_turbolinks.listener.cross_domain.class">Helthe\Component\Turbolinks\EventListener\CrossDomainListener</parameter>
+        <parameter key="helthe_turbolinks.listener.redirect.class">Helthe\Component\Turbolinks\EventListener\RedirectListener</parameter>
+        <parameter key="helthe_turbolinks.listener.request_method.class">Helthe\Component\Turbolinks\EventListener\RequestMethodListener</parameter>
     </parameters>
 
     <services>
-        <service id="helthe_turbolinks.listener.block_xdomain" class="%helthe_turbolinks.listener.block_xdomain.class%">
+        <service id="helthe_turbolinks.listener.cross_domain" class="%helthe_turbolinks.listener.cross_domain.class%">
             <tag name="kernel.event_subscriber" />
         </service>
 

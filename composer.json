@@ -13,7 +13,8 @@
     ],
     "require": {
         "php": ">=5.3.3",
-        "symfony/framework-bundle": "~2.3"
+        "symfony/framework-bundle": "~2.3",
+        "helthe/turbolinks": "~1.0"
     },
     "autoload": {
         "psr-0": { "Helthe\\Bundle\\TurbolinksBundle\\": "" }
