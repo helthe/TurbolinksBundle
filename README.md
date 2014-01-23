@@ -36,7 +36,7 @@ public function registerBundles()
 {
     $bundles = array(
         // ...
-        new Helthe\Bundle\TurbolinksBundle\HealthTurbolinksBundle(),
+        new Helthe\Bundle\TurbolinksBundle\HeltheTurbolinksBundle(),
     );
 }
 ```
