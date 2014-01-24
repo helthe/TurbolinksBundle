@@ -3,6 +3,8 @@
 The HeltheTurbolinksBundle integrates the [Helthe Turbolinks Component](https://github.com/helthe/Turbolinks)
 with your Symfony2 application.
 
+[![Build Status](https://secure.travis-ci.org/helthe/TurbolinksBundle.png?branch=master)](http://travis-ci.org/helthe/TurbolinksBundle)
+
 ## Installation
 
 ### Step 1: Add package requirement in Composer
