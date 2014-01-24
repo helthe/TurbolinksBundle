@@ -36,7 +36,7 @@ public function registerBundles()
 {
     $bundles = array(
         // ...
-        new Helthe\Bundle\TurbolinksBundle(),
+        new Helthe\Bundle\TurbolinksBundle\HeltheTurbolinksBundle(),
     );
 }
 ```
@@ -73,9 +73,9 @@ Both the original coffeescript version and compiled version of each script are a
 #### Using Assetic
 
 ```jinja
-{% javascripts
-  '@HeltheTurbolinksBundle/Resources/public/js/turbolinks.js'
-%}
+{% javascripts '@HeltheTurbolinksBundle/Resources/public/js/turbolinks.js' %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+{% endjavascripts %}
 ```
 
 ### Using jquery.turbolinks
