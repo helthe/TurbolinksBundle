@@ -76,8 +76,8 @@ EOT
      */
     private function getComponentDir()
     {
-        $rc = new \ReflectionClass('Helthe\Component\Turbolinks\EventListener\CrossDomainListener');
+        $rc = new \ReflectionClass('Helthe\Component\Turbolinks\Turbolinks');
 
-        return dirname($rc->getFileName()) . '/../Resources/public';
+        return dirname($rc->getFileName()) . '/Resources/public';
     }
 }
