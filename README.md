@@ -17,7 +17,7 @@ Add the following in your `componser.json`:
 {
     "require": {
         // ...
-        "helthe/turbolinks-bundle": "~1.0"
+        "helthe/turbolinks-bundle": "~1.1"
     }
 }
 ```
@@ -25,7 +25,7 @@ Add the following in your `componser.json`:
 #### Using the command line
 
 ```bash
-$ composer require 'helthe/turbolinks-bundle=~1.0'
+$ composer require 'helthe/turbolinks-bundle=~1.1'
 ```
 
 ### Step 2: Register the bundle in the kernel

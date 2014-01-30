@@ -5,22 +5,16 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="helthe_turbolinks.listener.cross_domain.class">Helthe\Component\Turbolinks\EventListener\CrossDomainListener</parameter>
-        <parameter key="helthe_turbolinks.listener.redirect.class">Helthe\Component\Turbolinks\EventListener\RedirectListener</parameter>
-        <parameter key="helthe_turbolinks.listener.request_method.class">Helthe\Component\Turbolinks\EventListener\RequestMethodListener</parameter>
+        <parameter key="helthe_turbolinks.listener.turbolinks.class">Helthe\Component\Turbolinks\EventListener\TurbolinksListener</parameter>
+        <parameter key="helthe_turbolinks.turbolinks.class">Helthe\Component\Turbolinks\Turbolinks</parameter>
     </parameters>
 
     <services>
-        <service id="helthe_turbolinks.listener.cross_domain" class="%helthe_turbolinks.listener.cross_domain.class%">
+        <service id="helthe_turbolinks.listener.turbolinks" class="%helthe_turbolinks.listener.turbolinks.class%">
             <tag name="kernel.event_subscriber" />
+            <argument type="service" id="helthe_turbolinks.turbolinks" />
         </service>
 
-        <service id="helthe_turbolinks.listener.redirect" class="%helthe_turbolinks.listener.redirect.class%">
-            <tag name="kernel.event_subscriber" />
-        </service>
-
-        <service id="helthe_turbolinks.listener.request_method" class="%helthe_turbolinks.listener.request_method.class%">
-            <tag name="kernel.event_subscriber" />
-        </service>
+        <service id="helthe_turbolinks.turbolinks" class="%helthe_turbolinks.turbolinks.class%" />
     </services>
 </container>

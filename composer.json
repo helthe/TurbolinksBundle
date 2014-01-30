@@ -14,7 +14,7 @@
     "require": {
         "php": ">=5.3.3",
         "symfony/framework-bundle": "~2.3",
-        "helthe/turbolinks": "~1.0"
+        "helthe/turbolinks": "~1.2"
     },
     "autoload": {
         "psr-0": { "Helthe\\Bundle\\TurbolinksBundle\\": "" }
@@ -22,7 +22,7 @@
     "target-dir": "Helthe/Bundle/TurbolinksBundle",
     "extra": {
         "branch-alias": {
-            "dev-master": "1.0.x-dev"
+            "dev-master": "1.1.x-dev"
         }
     }
 }
