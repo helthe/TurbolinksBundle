@@ -11,7 +11,7 @@ with your Symfony2 application.
 
 #### Manually
 
-Add the following in your `componser.json`:
+Add the following in your `composer.json`:
 
 ```json
 {
