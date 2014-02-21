@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the HeltheTurbolinksBundle package.
+ *
+ * (c) Carl Alexander <carlalexander@helthe.co>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Helthe\Bundle\TurbolinksBundle\Tests\DependencyInjection;
 
 use Helthe\Bundle\TurbolinksBundle\DependencyInjection\HeltheTurbolinksExtension;
