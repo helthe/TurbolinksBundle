@@ -31,25 +31,25 @@ class ScriptHandler
     public static function installAssets(CommandEvent $event)
     {
         $options = self::getOptions($event);
-        $appDir = $options['symfony-app-dir'];
+        $consoleDir = self::getConsoleDir($event, 'turbolinks install');
 
-        static::executeCommand($event, $appDir, 'helthe:turbolinks:install', $options['process-timeout']);
+        static::executeCommand($event, $consoleDir, 'helthe:turbolinks:install', $options['process-timeout']);
     }
 
     /**
      * Execute command.
      *
      * @param CommandEvent $event
-     * @param string       $appDir
+     * @param string       $consoleDir
      * @param string       $cmd
      * @param integer      $timeout
      *
      * @throws \RuntimeException
      */
-    protected static function executeCommand(CommandEvent $event, $appDir, $cmd, $timeout = 300)
+    protected static function executeCommand(CommandEvent $event, $consoleDir, $cmd, $timeout = 300)
     {
         $php = escapeshellarg(self::getPhp());
-        $console = escapeshellarg($appDir.'/console');
+        $console = escapeshellarg($consoleDir.'/console');
         if ($event->getIO()->isDecorated()) {
             $console .= ' --ansi';
         }
@@ -72,6 +72,7 @@ class ScriptHandler
     {
         $options = array_merge(array(
             'symfony-app-dir' => 'app',
+            'symfony-bin-dir' => 'bin',
         ), $event->getComposer()->getPackage()->getExtra());
 
         $options['process-timeout'] = $event->getComposer()->getConfig()->get('process-timeout');
@@ -94,5 +95,55 @@ class ScriptHandler
         }
 
         return $phpPath;
+    }
+    
+    /**
+     * Returns a relative path to the directory that contains the `console` command.
+     *
+     * @param CommandEvent $event      The command event.
+     * @param string       $actionName The name of the action
+     *
+     * @return string|null The path to the console directory, null if not found.
+     */
+    protected static function getConsoleDir(CommandEvent $event, $actionName)
+    {
+        $options = self::getOptions($event);
+
+        if (self::useNewDirectoryStructure($options)) {
+            if (!self::hasDirectory($event, 'symfony-bin-dir', $options['symfony-bin-dir'], $actionName)) {
+                return;
+            }
+
+            return $options['symfony-bin-dir'];
+        }
+
+        if (!self::hasDirectory($event, 'symfony-app-dir', $options['symfony-app-dir'], 'execute command')) {
+            return;
+        }
+
+        return $options['symfony-app-dir'];
+    }
+
+    /**
+     * Returns true if the new directory structure is used.
+     *
+     * @param array $options Composer options
+     *
+     * @return bool
+     */
+    protected static function useNewDirectoryStructure(array $options)
+    {
+        return isset($options['symfony-var-dir']) && is_dir($options['symfony-var-dir']);
+    }
+
+    protected static function hasDirectory(CommandEvent $event, $configName, $path, $actionName)
+    {
+        if (!is_dir($path)) {
+            $event->getIO()->write(sprintf('The %s (%s) specified in composer.json was not found in %s, can not %s.', $configName, $path, getcwd(), $actionName));
+
+            return false;
+        }
+
+        return true;
     }
 }
