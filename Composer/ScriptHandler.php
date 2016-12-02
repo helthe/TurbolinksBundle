@@ -13,7 +13,7 @@ namespace Helthe\Bundle\TurbolinksBundle\Composer;
 
 use Symfony\Component\Process\Process;
 use Symfony\Component\Process\PhpExecutableFinder;
-use Composer\Script\CommandEvent;
+use Composer\Script\Event;
 
 /**
  * ScriptHandler for the HeltheTurbolinksBundle.
@@ -26,9 +26,9 @@ class ScriptHandler
      * Install the component assets under the symfony bundle for better integration
      * with Symfony.
      *
-     * @param CommandEvent $event
+     * @param Event $event
      */
-    public static function installAssets(CommandEvent $event)
+    public static function installAssets(Event $event)
     {
         $options = self::getOptions($event);
         $consoleDir = self::getConsoleDir($event, 'turbolinks install');
@@ -39,14 +39,14 @@ class ScriptHandler
     /**
      * Execute command.
      *
-     * @param CommandEvent $event
+     * @param Event $event
      * @param string       $consoleDir
      * @param string       $cmd
      * @param integer      $timeout
      *
      * @throws \RuntimeException
      */
-    protected static function executeCommand(CommandEvent $event, $consoleDir, $cmd, $timeout = 300)
+    protected static function executeCommand(Event $event, $consoleDir, $cmd, $timeout = 300)
     {
         $php = escapeshellarg(self::getPhp());
         $console = escapeshellarg($consoleDir.'/console');
@@ -64,11 +64,11 @@ class ScriptHandler
     /**
      * Get the default options.
      *
-     * @param CommandEvent $event
+     * @param Event $event
      *
      * @return array
      */
-    protected static function getOptions(CommandEvent $event)
+    protected static function getOptions(Event $event)
     {
         $options = array_merge(array(
             'symfony-app-dir' => 'app',
@@ -100,25 +100,25 @@ class ScriptHandler
     /**
      * Returns a relative path to the directory that contains the `console` command.
      *
-     * @param CommandEvent $event      The command event.
+     * @param Event $event      The command event.
      * @param string       $actionName The name of the action
      *
      * @return string|null The path to the console directory, null if not found.
      */
-    protected static function getConsoleDir(CommandEvent $event, $actionName)
+    protected static function getConsoleDir(Event $event, $actionName)
     {
         $options = self::getOptions($event);
 
         if (self::useNewDirectoryStructure($options)) {
             if (!self::hasDirectory($event, 'symfony-bin-dir', $options['symfony-bin-dir'], $actionName)) {
-                return;
+                return null;
             }
 
             return $options['symfony-bin-dir'];
         }
 
         if (!self::hasDirectory($event, 'symfony-app-dir', $options['symfony-app-dir'], 'execute command')) {
-            return;
+            return null;
         }
 
         return $options['symfony-app-dir'];
@@ -136,7 +136,7 @@ class ScriptHandler
         return isset($options['symfony-var-dir']) && is_dir($options['symfony-var-dir']);
     }
 
-    protected static function hasDirectory(CommandEvent $event, $configName, $path, $actionName)
+    protected static function hasDirectory(Event $event, $configName, $path, $actionName)
     {
         if (!is_dir($path)) {
             $event->getIO()->write(sprintf('The %s (%s) specified in composer.json was not found in %s, can not %s.', $configName, $path, getcwd(), $actionName));
