@@ -111,14 +111,14 @@ class ScriptHandler
 
         if (self::useNewDirectoryStructure($options)) {
             if (!self::hasDirectory($event, 'symfony-bin-dir', $options['symfony-bin-dir'], $actionName)) {
-                return;
+                return null;
             }
 
             return $options['symfony-bin-dir'];
         }
 
         if (!self::hasDirectory($event, 'symfony-app-dir', $options['symfony-app-dir'], 'execute command')) {
-            return;
+            return null;
         }
 
         return $options['symfony-app-dir'];
