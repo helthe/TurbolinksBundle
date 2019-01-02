@@ -1,7 +1,7 @@
 # Helthe Turbolinks Bundle [![Build Status](https://secure.travis-ci.org/helthe/TurbolinksBundle.png?branch=master)](http://travis-ci.org/helthe/TurbolinksBundle) [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/helthe/TurbolinksBundle/badges/quality-score.png?s=eda15114a686b73f8de2e2d4a8beee6ce2af5bbf)](https://scrutinizer-ci.com/g/helthe/TurbolinksBundle/)
 
 The HeltheTurbolinksBundle integrates the [Helthe Turbolinks Component](https://github.com/helthe/Turbolinks)
-with your Symfony2 application.
+with your Symfony application.
 
 ## Installation
 
@@ -15,7 +15,7 @@ Add the following in your `composer.json`:
 {
     "require": {
         // ...
-        "helthe/turbolinks-bundle": "~1.1"
+        "helthe/turbolinks-bundle": "~1.3"
     }
 }
 ```
@@ -23,7 +23,7 @@ Add the following in your `composer.json`:
 #### Using the command line
 
 ```bash
-$ composer require 'helthe/turbolinks-bundle=~1.1'
+$ composer require 'helthe/turbolinks-bundle=~1.3'
 ```
 
 ### Step 2: Register the bundle in the kernel
