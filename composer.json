@@ -16,6 +16,9 @@
         "symfony/framework-bundle": "~2.3|~3.0|~4.0",
         "helthe/turbolinks": "~1.2"
     },
+    "require-dev": {
+        "phpunit/phpunit": "^5"
+    },
     "autoload": {
         "psr-4": { "Helthe\\Bundle\\TurbolinksBundle\\": "" }
     }
