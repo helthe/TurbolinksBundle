@@ -13,8 +13,9 @@ namespace Helthe\Bundle\TurbolinksBundle\Tests\DependencyInjection;
 
 use Helthe\Bundle\TurbolinksBundle\DependencyInjection\HeltheTurbolinksExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use PHPUnit\Framework\TestCase;
 
-class HeltheTurbolinksExtensionTest extends \PHPUnit_Framework_TestCase
+class HeltheTurbolinksExtensionTest extends TestCase
 {
     public function testLoadDefault()
     {
